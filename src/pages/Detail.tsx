@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Typography, Avatar, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import axios from 'axios';
+// import axios from 'axios';
 import CommentBar from '../components/comment/CommentBar';
 import CommentList from '../components/comment/CommentList';
 import { api } from '../lib/api';
@@ -59,7 +59,7 @@ const DetailIndex = () => {
   useEffect(() => {
     const fetchPostAndComments = async () => {
       try {
-        const postResponse = await axios.get(`http://localhost:5000/post/${id}`);
+        const postResponse = await api.get(`/post/${id}`);
         setPost(postResponse.data);
         
         await fetchComments();
@@ -76,7 +76,7 @@ const DetailIndex = () => {
 
   const handleLike = async () => {
     try {
-      await axios.post(`http://localhost:5000/post/${id}/like`, {}, {
+      await api.post(`/post/${id}/like`, {}, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       setPost(prevPost => prevPost ? {...prevPost, _count: {...prevPost._count, likes: prevPost._count.likes + 1}} : null);
