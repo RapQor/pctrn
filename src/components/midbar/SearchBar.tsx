@@ -1,8 +1,9 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Box, Typography, Input, Button, Avatar, IconButton } from "@mui/material";
 import useUserProfile from '../../components/rightbar/hooks/useUserProfile';
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
+import { api } from "../../lib/api";
 
 interface SearchBarProps {
    onPostSent: () => void;
@@ -24,8 +25,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onPostSent }) => {
       
       console.log("Form data:", formData.get('content'), formData.get('image')); // Debug log untuk FormData
       
-      const res = await axios.post(
-        "http://localhost:5000/post",
+      const res = await api.post(
+        `/post`,
         formData,
         {
           headers: {

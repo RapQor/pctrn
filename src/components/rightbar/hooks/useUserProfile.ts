@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { api } from '../../../lib/api';
 
 interface UserProfile {
   id: number;
@@ -21,7 +22,7 @@ const useUserProfile = () => {
   const fetchProfile = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/user', {
+      const response = await api.get('/user', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -30,12 +31,12 @@ const useUserProfile = () => {
       const userData = response.data.data;
       
       // Fetch followers and following counts
-      const followersResponse = await axios.get(`http://localhost:5000/follow/followers/${userData.id}`, {
+      const followersResponse = await api.get(`/follow/followers/${userData.id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }
       });
-      const followingResponse = await axios.get(`http://localhost:5000/follow/following/${userData.id}`, {
+      const followingResponse = await api.get(`/follow/following/${userData.id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

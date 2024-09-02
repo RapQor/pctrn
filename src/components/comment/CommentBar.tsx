@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
-import axios from 'axios';
+// import axios from 'axios';
+import { api } from '../../lib/api';
 
 interface CommentBarProps {
   postId: number;
@@ -12,8 +13,8 @@ const CommentBar: React.FC<CommentBarProps> = ({ postId, onCommentAdded }) => {
 
   const handleComment = async () => {
     try {
-      const response = await axios.post(
-        `http://localhost:5000/reply/post/${postId}`,
+      const response = await api.post(
+        `/reply/post/${postId}`,
         { content: newComment },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },

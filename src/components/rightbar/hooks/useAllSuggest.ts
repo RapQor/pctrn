@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
+import { api } from '../../../lib/api';
 
 interface User {
   id: number;
@@ -16,7 +17,7 @@ const useAllUsers = () => {
   const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/all/all', {
+      const response = await api.get('/all/all', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`
         }

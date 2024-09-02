@@ -5,9 +5,10 @@ import { formatDistanceToNow } from "date-fns";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CommentIcon from '@mui/icons-material/Comment';
-import axios from 'axios';
+// import axios from 'axios';
 import useUserProfile from '../rightbar/hooks/useUserProfile';
 import { Icon } from '@iconify/react/dist/iconify.js';
+import { api } from '../../lib/api';
 
 interface Author {
   id: number;
@@ -49,7 +50,7 @@ const Post: React.FC<PostProps> = ({ posts }) => {
       const likeStatus: {[key: number]: boolean} = {};
       for (const post of posts) {
         try {
-          const response = await axios.get(`http://localhost:5000/post/${post.id}/like/check`, {
+          const response = await api.get(`/post/${post.id}/like/check`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
           });
           likeStatus[post.id] = response.data.hasLiked;
@@ -80,11 +81,11 @@ const Post: React.FC<PostProps> = ({ posts }) => {
 
       // API call
       if (isLiked) {
-        await axios.delete(`http://localhost:5000/post/${postId}/like`, {
+        await api.delete(`/post/${postId}/like`, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
       } else {
-        await axios.post(`http://localhost:5000/post/${postId}/like`, {}, {
+        await api.post(`/post/${postId}/like`, {}, {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
       }
