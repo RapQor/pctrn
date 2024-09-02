@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://pctrn-3u5lpwav5-rafi-abdurrahman-abqoris-projects.vercel.app/"
+    baseURL: "https://pctrn-be.vercel.app/"
 });
 
 export const setAuthToken = (token?: string) => {
