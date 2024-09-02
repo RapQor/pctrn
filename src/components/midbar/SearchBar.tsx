@@ -19,34 +19,25 @@ const SearchBar: React.FC<SearchBarProps> = ({ onPostSent }) => {
       const formData = new FormData();
       formData.append('content', input);
       if (image) {
-        console.log("Image file:", image); // Debug log untuk image
-        formData.append('images', image);
+        formData.append('images', image); // Ensure the key matches backend expectations
       }
-      
-      console.log("Form data:", formData.get('content'), formData.get('image')); // Debug log untuk FormData
-      
-      const res = await api.post(
-        `/post`,
-        formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem("token")}`,
-            'Content-Type': 'multipart/form-data'
-          },
-        }
-      );
+      const res = await api.post(`/post`, formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+          'Content-Type': 'multipart/form-data'
+        },
+      });
   
       if (res.status === 200) {
         setInput("");
         setImage(null);
         onPostSent();
       }
-  
-      console.log(res);
     } catch (error) {
-      console.log(error);
+      console.log("Error sending post:", error);
     }
   };
+  
   
 
    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -142,7 +142,7 @@ const Post: React.FC<PostProps> = ({ posts }) => {
                 {post.images.map((image, index) => (
                   <img
                   key={index}
-                  src={`http://localhost:5000/uploads/${image.image}`}
+                  src={`${image.image}`}
                   alt={`post image ${index + 1}`}
                   style={{ maxWidth: "100%", borderRadius: "10px" }}
                   />
