@@ -5,6 +5,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import axios from 'axios';
 import CommentBar from '../components/comment/CommentBar';
 import CommentList from '../components/comment/CommentList';
+import { api } from '../lib/api';
 
 interface Post {
   id: number;
@@ -43,7 +44,7 @@ const DetailIndex = () => {
   const fetchComments = React.useCallback(async () => {
     try {
       console.log('Fetching comments for post id:', id);
-      const response = await axios.get(`http://localhost:5000/reply/post/${id}`);
+      const response = await api.get(`/reply/post/${id}`);
       console.log('Raw response data:', response.data);
       
       const fetchedComments = Array.isArray(response.data) ? response.data : [];
