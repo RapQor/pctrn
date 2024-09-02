@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "https://pctrn-be.vercel.app/"
+    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
 });
 
 export const setAuthToken = (token?: string) => {
