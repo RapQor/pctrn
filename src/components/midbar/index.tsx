@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Post from "./Post";
 import SearchBar from "./SearchBar";
 import { Box } from "@mui/material";
-// import axios from 'axios';
 import { api } from "../../lib/api";
+// import axios from 'axios';
 
 const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -11,7 +11,7 @@ const Home = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await api.post(`/post`);
+      const response = await api.get(`/post`);
       setPosts(response.data);
     } catch (error) {
       console.error("Error fetching posts:", error);
