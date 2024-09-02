@@ -36,7 +36,7 @@ const Profile: React.FC = () => {
         formData.append('profile_pic', editedProfile.newProfilePic);
       }
 
-      await api.patch(`/user/update-profile/${profile?.id}`, formData, {
+      await api.patch(`/users/user/update-profile/${profile?.id}`, formData, {
         headers: { 
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data'
