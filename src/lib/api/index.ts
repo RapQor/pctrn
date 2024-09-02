@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+    baseURL: "https://pctrn-3u5lpwav5-rafi-abdurrahman-abqoris-projects.vercel.app/"
 });
 
 export const setAuthToken = (token?: string) => {
