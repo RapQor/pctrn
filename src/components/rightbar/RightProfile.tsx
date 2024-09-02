@@ -26,7 +26,7 @@ const RightProfile = () => {
 
   const handleSaveProfile = async (editedProfile: { fullName: string; username: string; bio: string }) => {
     try {
-      await api.put(`/user/update-profile/${profile?.id}`, editedProfile, {
+      await api.patch(`/user/update-profile/${profile?.id}`, editedProfile, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       await refetch(); // Use the refetch function from the hook
