@@ -8,7 +8,7 @@ import { useRegisterFunction } from "./hooks/useRegisterFunction";
 
 
 const RegisterForm = () => {
-   const { control, handleSubmit, reset, watch } = useRegisterValidation();
+   const { control, handleSubmit, reset } = useRegisterValidation();
 
    const registerFunction = useRegisterFunction();
    const onSubmit = async (data: IRegisterForm) => {

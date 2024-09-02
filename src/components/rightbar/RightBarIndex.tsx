@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import RightProfile from './RightProfile'
 import { Box } from '@mui/material'
 import RightSuggest from './RightSuggest'

@@ -1,9 +1,9 @@
-import React from 'react'
+// // import React from 'react'
 
-const tittle = (props) => {
-  console.log(props);
+// const tittle = (props) => {
+//   console.log(props);
 
-   return <p className="text-danger fs-1">{props.title}</p>;
-}
+//    return <p className="text-danger fs-1">{props.title}</p>;
+// }
 
-export default tittle
+// export default tittle

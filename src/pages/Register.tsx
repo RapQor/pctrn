@@ -13,7 +13,7 @@ const Register = () => {
             padding: "20px",
          }}
       >
-         <RegisterForm title={""} />
+         <RegisterForm />
       </Box>
    );
 };

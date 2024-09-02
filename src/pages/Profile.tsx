@@ -14,6 +14,7 @@ const Profile: React.FC = () => {
   const [openEditModal, setOpenEditModal] = useState(false);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    event.preventDefault();
     setActiveTab(newValue);
   };
 

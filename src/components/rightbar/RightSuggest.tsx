@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Avatar, Box, CircularProgress, Typography, Button } from '@mui/material';
 import { Icon } from '@iconify/react';
 import useAllUsers from '../../components/rightbar/hooks/useAllSuggest';
