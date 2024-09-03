@@ -150,7 +150,6 @@ const Post: React.FC<PostProps> = ({ posts }) => {
                 ))}
               </Box>
             )}
-            <Typography>{post.content}</Typography>
             <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton onClick={(e) => handleLikeUnlike(e, post.id)}>
               {userLikes[post.id] ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />}

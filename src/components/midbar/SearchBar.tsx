@@ -18,7 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onPostSent }) => {
       const formData = new FormData();
       formData.append('content', input);
       if (image) {
-        formData.append('file', image); // Changed 'images' to 'file' to match backend
+        formData.append('image', image); // Changed 'images' to 'file' to match backend
       }
       const res = await api.post(`/post`, formData, {
         headers: {
