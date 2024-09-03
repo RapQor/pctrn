@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
 import Post from "./Post";
 import SearchBar from "./SearchBar";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { api } from "../../lib/api";
-// import axios from 'axios';
 
 const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
-  console.log(posts);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchPosts = async () => {
     try {
       const response = await api.get(`/post`);
       setPosts(response.data);
+      setError(null);
     } catch (error) {
       console.error("Error fetching posts:", error);
+      setError("Failed to load posts. Please try again later.");
     }
   };
 
@@ -42,7 +43,11 @@ const Home = () => {
           },
         }}
       >
-        <Post posts={posts} />
+        {error ? (
+          <Typography color="error" sx={{ padding: 2 }}>{error}</Typography>
+        ) : (
+          <Post posts={posts} />
+        )}
       </Box>
     </Box>
   );

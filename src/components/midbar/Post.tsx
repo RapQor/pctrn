@@ -6,7 +6,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CommentIcon from '@mui/icons-material/Comment';
 // import axios from 'axios';
-import useUserProfile from '../rightbar/hooks/useUserProfile';
+// import useUserProfile from '../rightbar/hooks/useUserProfile';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { api } from '../../lib/api';
 
@@ -42,7 +42,7 @@ const Post: React.FC<PostProps> = ({ posts }) => {
   const [likesCount, setLikesCount] = useState<{[key: number]: number}>({});
   const [userLikes, setUserLikes] = useState<{[key: number]: boolean}>({});
 
-  const { profile} = useUserProfile();
+  // const { profile} = useUserProfile();
   
   useEffect(() => {
     // Fetch initial like status for each post
@@ -115,12 +115,12 @@ const Post: React.FC<PostProps> = ({ posts }) => {
             padding: "10px",
             display: "grid",
             gridTemplateColumns: "auto 1fr",
-            alignItems: "center",
+            alignItems: "start", // Changed from "center" to "start"
           }}
         >
           <Avatar
              alt="Profile Picture"
-             src={`http://localhost:5000/uploads/${profile?.profile_pic}` || undefined}
+             src={`http://localhost:5000/uploads/${post.author.profile_pic}` || undefined}
              sx={{
                width: 50,
                height: 50,
@@ -128,7 +128,7 @@ const Post: React.FC<PostProps> = ({ posts }) => {
                marginRight: 1,
              }}
            >
-             {!profile?.profile_pic && <Icon icon="mdi:user-circle" style={{ fontSize: 70 }} />}
+             {!post.author.profile_pic && <Icon icon="mdi:user-circle" style={{ fontSize: 70 }} />}
            </Avatar>
           <Box sx={{ display: "flex", flexDirection: "column", gap: "10px", paddingLeft: "10px" }}>
             <Typography>
@@ -137,18 +137,17 @@ const Post: React.FC<PostProps> = ({ posts }) => {
                 • @{post.author.username} • {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
               </Typography>
             </Typography>
-            {post.images?.length > 0 && (
+            <Typography>{post.content}</Typography>
+            {post.images && post.images.length > 0 && (
               <Box sx={{ marginTop: 2 }}>
                 {post.images.map((image, index) => (
                   <img
-                  key={index}
-                  src={`${image.image}`}
-                  alt={`post image ${index + 1}`}
-                  style={{ maxWidth: "100%", borderRadius: "10px" }}
+                    key={index}
+                    src={image.image}
+                    alt={`post image ${index + 1}`}
+                    style={{ maxWidth: "100%", borderRadius: "10px" }}
                   />
-                  // <Typography>{image.image}</Typography>
-
-                ))} 
+                ))}
               </Box>
             )}
             <Typography>{post.content}</Typography>

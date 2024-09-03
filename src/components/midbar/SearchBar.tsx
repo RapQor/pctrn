@@ -1,7 +1,6 @@
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { Box, Typography, Input, Button, Avatar, IconButton } from "@mui/material";
 import useUserProfile from '../../components/rightbar/hooks/useUserProfile';
-// import axios from "axios";
 import { useState } from "react";
 import { api } from "../../lib/api";
 
@@ -11,15 +10,15 @@ interface SearchBarProps {
  
 const SearchBar: React.FC<SearchBarProps> = ({ onPostSent }) => {
    const [input, setInput] = useState("");
-   const [image, setImage] = useState<File | null>(null); // New state to hold the uploaded image
-   const { profile} = useUserProfile();
+   const [image, setImage] = useState<File | null>(null);
+   const { profile } = useUserProfile();
  
    const handleSendPost = async () => {
     try {
       const formData = new FormData();
       formData.append('content', input);
       if (image) {
-        formData.append('images', image); // Ensure the key matches backend expectations
+        formData.append('file', image); // Changed 'images' to 'file' to match backend
       }
       const res = await api.post(`/post`, formData, {
         headers: {
@@ -37,8 +36,6 @@ const SearchBar: React.FC<SearchBarProps> = ({ onPostSent }) => {
       console.log("Error sending post:", error);
     }
   };
-  
-  
 
    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
      if (e.target.files && e.target.files[0]) {
