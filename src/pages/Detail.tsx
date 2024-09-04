@@ -104,13 +104,11 @@ const DetailIndex = () => {
               <Box sx={{ marginTop: 2 }}>
                 {post.images.map((image, index) => (
                   <img
-                  key={index}
-                  src={`http://localhost:5000/uploads/${image.image}`}
-                  alt={`post image ${index + 1}`}
-                  style={{ maxWidth: "100%", borderRadius: "10px" }}
+                    key={index}
+                    src={image.image}
+                    alt={`post image ${index + 1}`}
+                    style={{ maxWidth: "100%", borderRadius: "10px" }}
                   />
-                  // <Typography>{image.image}</Typography>
-
                 ))} 
               </Box>
             )}
